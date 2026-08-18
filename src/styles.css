@@ -43,6 +43,8 @@
   --color-ivory: var(--ivory);
   --color-parchment: var(--parchment);
   --color-rule: var(--rule);
+  --color-soil: var(--soil);
+  --color-soil-deep: var(--soil-deep);
   --font-display: "Instrument Serif", "Libre Baskerville", Georgia, serif;
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
   --font-kannada: "Noto Sans Kannada", "Noto Serif Kannada", sans-serif;
@@ -62,6 +64,8 @@
   --dried: oklch(0.55 0.03 60);
   --bark: oklch(0.4 0.06 55);
   --rule: oklch(0.86 0.014 80);
+  --soil: oklch(0.24 0.025 55);
+  --soil-deep: oklch(0.14 0.018 50);
 
   --background: var(--ivory);
   --foreground: var(--ink);
@@ -208,9 +212,27 @@
   animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@keyframes pest-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@utility animate-pest-pulse {
+  animation: pest-pulse 2.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-sway,
-  .animate-rise {
+  .animate-rise,
+  .animate-pest-pulse {
     animation: none !important;
   }
   html {

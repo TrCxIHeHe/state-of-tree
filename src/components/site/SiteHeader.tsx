@@ -1,19 +1,59 @@
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/logo.png.asset.json";
+import { nav, useLanguage } from "@/lib/language";
+
+const LOGO_SRC = "/brand/logo.png";
 
 const links = [
-  { href: "#about", label: "About", kn: "ಪರಿಚಯ" },
-  { href: "#governance", label: "Governance", kn: "ಸರ್ಕಾರ" },
-  { href: "#mission", label: "Mission", kn: "ಧ್ಯೇಯ" },
-  { href: "#focus", label: "Focus Areas", kn: "ಕಾರ್ಯಕ್ಷೇತ್ರ" },
-  { href: "#lens", label: "Governance Lens", kn: "ದೃಷ್ಟಿ" },
-  { href: "#objectives", label: "ಉದ್ದೇಶಗಳು", kn: "" },
-  { href: "#contact", label: "Contact", kn: "ಸಂಪರ್ಕ" },
+  { href: "#about", label: nav.about },
+  { href: "#roots", label: nav.roots },
+  { href: "#governance", label: nav.governance },
+  { href: "#mission", label: nav.mission },
+  { href: "#focus", label: nav.focus },
+  { href: "#lens", label: nav.lens },
+  { href: "#objectives", label: nav.objectives },
+  { href: "#contact", label: nav.contact },
 ];
+
+function LanguageToggle({ className = "" }: { className?: string }) {
+  const { lang, setLang } = useLanguage();
+  return (
+    <div
+      className={`inline-flex items-center border border-border text-[0.7rem] font-medium tracking-wide ${className}`}
+      role="group"
+      aria-label="Language"
+    >
+      <button
+        type="button"
+        onClick={() => setLang("en")}
+        aria-pressed={lang === "en"}
+        className={`px-2.5 py-1.5 transition-colors ${
+          lang === "en"
+            ? "bg-primary text-primary-foreground"
+            : "text-foreground/70 hover:text-primary"
+        }`}
+      >
+        EN
+      </button>
+      <button
+        type="button"
+        onClick={() => setLang("kn")}
+        aria-pressed={lang === "kn"}
+        className={`kn px-2.5 py-1.5 transition-colors ${
+          lang === "kn"
+            ? "bg-primary text-primary-foreground"
+            : "text-foreground/70 hover:text-primary"
+        }`}
+      >
+        ಕನ್ನಡ
+      </button>
+    </div>
+  );
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 24);
@@ -36,13 +76,17 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex max-w-[1240px] items-center gap-4 px-5 py-3 md:px-8 md:py-4">
-        <a href="#top" className="flex items-center gap-3" aria-label="Sarkaro Rakshathi Kendra home">
+        <a
+          href="#top"
+          className="flex items-center gap-3"
+          aria-label="Sarkaro Rakshathi Kendra home"
+        >
           <img
-            src={logoAsset.url}
+            src={LOGO_SRC}
             alt="Sarkaro Rakshathi Kendra emblem: a whip and a bouquet"
             className="h-11 w-auto md:h-12"
-            width={96}
-            height={112}
+            width={503}
+            height={588}
           />
           <span className="leading-tight">
             <span className="kn-display block text-[0.95rem] font-semibold text-primary md:text-base">
@@ -61,10 +105,12 @@ export function SiteHeader() {
               href={l.href}
               className="text-[0.82rem] font-medium text-foreground/75 transition-colors hover:text-primary"
             >
-              {l.label}
+              {t(l.label.en, l.label.kn)}
             </a>
           ))}
         </nav>
+
+        <LanguageToggle className="ml-auto hidden lg:inline-flex" />
 
         <button
           type="button"
@@ -77,7 +123,9 @@ export function SiteHeader() {
           <span
             className={`block h-[1.5px] w-5 bg-foreground transition-transform ${open ? "translate-y-[6.5px] rotate-45" : ""}`}
           />
-          <span className={`block h-[1.5px] w-5 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
+          <span
+            className={`block h-[1.5px] w-5 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`}
+          />
           <span
             className={`block h-[1.5px] w-5 bg-foreground transition-transform ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`}
           />
@@ -90,6 +138,7 @@ export function SiteHeader() {
         className="border-t border-border bg-background lg:hidden"
       >
         <nav className="mx-auto max-w-[1240px] px-5 py-4" aria-label="Mobile">
+          <LanguageToggle className="mb-4" />
           <ul className="divide-y divide-border">
             {links.map((l) => (
               <li key={l.href}>
@@ -98,8 +147,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   className="flex items-baseline justify-between py-3.5 text-base text-foreground"
                 >
-                  <span>{l.label}</span>
-                  {l.kn ? <span className="kn text-sm text-muted-foreground">{l.kn}</span> : null}
+                  <span>{t(l.label.en, l.label.kn)}</span>
                 </a>
               </li>
             ))}

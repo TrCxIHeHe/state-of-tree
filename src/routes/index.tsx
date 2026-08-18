@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LanguageProvider } from "@/lib/language";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { Hero } from "@/components/site/Hero";
+import { Roots } from "@/components/site/Roots";
 import { About } from "@/components/site/About";
 import { Governance } from "@/components/site/Governance";
 import { Mission } from "@/components/site/Mission";
@@ -31,10 +33,11 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <>
+    <LanguageProvider>
       <SiteHeader />
       <main>
         <Hero />
+        <Roots />
         <About />
         <Governance />
         <Mission />
@@ -43,6 +46,6 @@ function Index() {
         <Objectives />
         <Contact />
       </main>
-    </>
+    </LanguageProvider>
   );
 }
