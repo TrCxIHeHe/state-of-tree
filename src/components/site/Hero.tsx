@@ -30,36 +30,38 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="animate-rise">
-          <p className="eyebrow">Regn. No.: DRB4/SOR/136/2021-2022</p>
-          <h1 className="mt-4 max-w-[16ch]">
-            <span className="kn-display block text-[2.35rem] leading-[1.12] font-bold text-primary sm:text-[3.2rem] md:text-[4rem]">
-              {t("Sarkaro Rakshathi Kendra", "ಸರ್ಕಾರೋ ರಕ್ಷತಿ ಕೇಂದ್ರ")}
-            </span>
-            <span className="mt-2 block font-sans text-[0.78rem] tracking-[0.28em] text-foreground/70 uppercase md:text-sm">
-              {t("ಸರ್ಕಾರೋ ರಕ್ಷತಿ ಕೇಂದ್ರ (ರಿ.)", "Sarkaro Rakshathi Kendra (R.)")}
-            </span>
-          </h1>
-          <p className={`mt-3 text-lg text-accent italic md:text-xl ${headFont}`}>
-            {t("A Watchdog of Government", "ಸರ್ಕಾರದ ಒಂದು ಕಾವಲುಗಾರ")}
-          </p>
-        </div>
+        <div className="grid items-center gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-6">
+          <div className="animate-rise">
+            <p className="eyebrow">Regn. No.: DRB4/SOR/136/2021-2022</p>
+            <h1 className="mt-4 max-w-[16ch]">
+              <span className="kn-display block text-[2.35rem] leading-[1.12] font-bold text-primary sm:text-[3.2rem] md:text-[3.4rem]">
+                {t("Sarkaro Rakshathi Kendra", "ಸರ್ಕಾರೋ ರಕ್ಷತಿ ಕೇಂದ್ರ")}
+              </span>
+              <span className="mt-2 block font-sans text-[0.78rem] tracking-[0.28em] text-foreground/70 uppercase md:text-sm">
+                {t("ಸರ್ಕಾರೋ ರಕ್ಷತಿ ಕೇಂದ್ರ (ರಿ.)", "Sarkaro Rakshathi Kendra (R.)")}
+              </span>
+            </h1>
+            <p className={`mt-3 text-lg text-accent italic md:text-xl ${headFont}`}>
+              {t("A Watchdog of Government", "ಸರ್ಕಾರದ ಒಂದು ಕಾವಲುಗಾರ")}
+            </p>
+          </div>
 
-        {/* tree stage — the full reference artwork, shown whole and uncropped */}
-        <div className="relative mt-4 md:mt-2">
-          <figure
-            className="relative z-10 mx-auto w-full max-w-[1140px]"
-            style={{ transform: `translate3d(0,${Math.min(y * 0.04, 40)}px,0)` }}
-          >
-            <img
-              src={TREE_SRC}
-              alt="A nation is like a tree and the governance is its root: a tree green, flowering and fruiting on one half and bare and dried on the other, with its exposed roots below being fed on by pests labelled corruption and non-professionalism, and an arrow toward democracy left as an open question."
-              className="h-auto w-full drop-shadow-[0_30px_60px_color-mix(in_oklab,var(--bark)_18%,transparent)]"
-              width={1280}
-              height={816}
-              fetchPriority="high"
-            />
-          </figure>
+          {/* tree stage — the full reference artwork, shown whole and uncropped */}
+          <div className="relative">
+            <figure
+              className="relative z-10 mx-auto w-full max-w-[720px]"
+              style={{ transform: `translate3d(0,${Math.min(y * 0.04, 40)}px,0)` }}
+            >
+              <img
+                src={TREE_SRC}
+                alt="A nation is like a tree and the governance is its root: a tree green, flowering and fruiting on one half and bare and dried on the other, with its exposed roots below being fed on by pests labelled corruption and non-professionalism, and an arrow toward democracy left as an open question."
+                className="h-auto w-full drop-shadow-[0_30px_60px_color-mix(in_oklab,var(--bark)_18%,transparent)]"
+                width={1280}
+                height={816}
+                fetchPriority="high"
+              />
+            </figure>
+          </div>
         </div>
 
         <div className="mx-auto grid max-w-[1000px] gap-6 py-8 md:grid-cols-[1.15fr_0.85fr] md:py-10">

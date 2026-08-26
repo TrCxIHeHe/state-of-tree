@@ -1,7 +1,6 @@
 import { useLanguage } from "@/lib/language";
 import { Reveal } from "./Reveal";
-
-const TREE_SRC = "/brand/tree.png";
+import { RootsDiagram } from "./RootsDiagram";
 
 const problems = [
   { en: "Corruption", kn: "ಭ್ರಷ್ಟಾಚಾರ" },
@@ -26,7 +25,7 @@ export function Lens() {
   return (
     <section id="lens" className="rule-top">
       <div className="mx-auto max-w-[1240px] px-5 py-20 md:px-8 md:py-28">
-        <div className="grid items-center gap-12 md:grid-cols-[1fr_0.85fr]">
+        <div className="grid items-center gap-14 md:grid-cols-[1.05fr_0.95fr] md:gap-10">
           <Reveal>
             <p className="eyebrow">{t("Governance Lens", "ಆಡಳಿತ ದೃಷ್ಟಿ")}</p>
             <h2 className={`mt-4 text-[2.1rem] leading-[1.12] md:text-[3rem] ${headFont}`}>
@@ -38,26 +37,39 @@ export function Lens() {
             </h2>
             <p className={`mt-6 text-[1rem] leading-[1.9] text-foreground/80 ${bodyFont}`}>
               {t(
-                "Governance has the authority to question the necessity of the Governor's office through the lens of Governance. The same lens is turned on every individual, organization and system — including the democracy system which we adopted.",
-                "ಆಡಳಿತ ದೃಷ್ಟಿಯ ಮೂಲಕ, ರಾಜ್ಯಪಾಲರ ಕಚೇರಿಯ ಅಗತ್ಯವನ್ನೇ ಪ್ರಶ್ನಿಸುವ ಅಧಿಕಾರ ಆಡಳಿತಕ್ಕಿದೆ. ಅದೇ ದೃಷ್ಟಿಯನ್ನು ಪ್ರತಿಯೊಬ್ಬ ವ್ಯಕ್ತಿ, ಸಂಘ ಸಂಸ್ಥೆ ಮತ್ತು ವ್ಯವಸ್ಥೆಯ ಮೇಲೂ ಹರಿಸಲಾಗುತ್ತದೆ — ನಾವು ಅಳವಡಿಸಿಕೊಂಡ ಪ್ರಜಾಪ್ರಭುತ್ವ ವ್ಯವಸ್ಥೆ ಸೇರಿದಂತೆ.",
+                "In simple terms: we believe no office or system should exist just because it always has. So we ask, plainly, of every one of them — is this still necessary?",
+                "ಸರಳವಾಗಿ ಹೇಳುವುದಾದರೆ: ಯಾವುದೇ ಕಚೇರಿ ಅಥವಾ ವ್ಯವಸ್ಥೆ ಕೇವಲ ಅದು ಸದಾ ಇದ್ದದ್ದು ಎಂಬ ಕಾರಣಕ್ಕೆ ಮುಂದುವರಿಯಬಾರದು ಎಂಬುದು ನಮ್ಮ ನಂಬಿಕೆ. ಹಾಗಾಗಿ ಪ್ರತಿಯೊಂದನ್ನೂ ನೇರವಾಗಿ ಕೇಳುತ್ತೇವೆ — ಇದು ಇನ್ನೂ ಅಗತ್ಯವಿದೆಯೇ?",
+              )}
+            </p>
+            <p className={`mt-4 text-[1rem] leading-[1.9] text-foreground/80 ${bodyFont}`}>
+              {t(
+                "That includes the Governor's office. It includes any person, organization or system we've come to take for granted — even the democratic system we currently follow. Nothing is exempt from the question just because it is familiar.",
+                "ಇದರಲ್ಲಿ ರಾಜ್ಯಪಾಲರ ಕಚೇರಿಯೂ ಸೇರಿದೆ. ನಾವು ಸಹಜವೆಂದು ಒಪ್ಪಿಕೊಂಡ ಯಾವುದೇ ವ್ಯಕ್ತಿ, ಸಂಘ ಸಂಸ್ಥೆ ಅಥವಾ ವ್ಯವಸ್ಥೆ — ನಾವು ಈಗ ಅನುಸರಿಸುತ್ತಿರುವ ಪ್ರಜಾಪ್ರಭುತ್ವ ವ್ಯವಸ್ಥೆ ಸೇರಿದಂತೆ — ಇದರಲ್ಲಿ ಸೇರಿದೆ. ಪರಿಚಿತವಾಗಿದೆ ಎಂಬ ಕಾರಣಕ್ಕೆ ಯಾವುದೂ ಈ ಪ್ರಶ್ನೆಯಿಂದ ಹೊರತಾಗಿಲ್ಲ.",
               )}
             </p>
           </Reveal>
 
-          <Reveal delay={120} className="flex justify-center">
-            <div
-              className="relative aspect-square w-[min(88%,380px)] overflow-hidden rounded-full border border-border"
-              aria-hidden
-            >
-              <img
-                src={TREE_SRC}
-                alt=""
-                className="absolute top-[-6%] left-1/2 w-[150%] -translate-x-1/2 object-cover"
-              />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_45%,color-mix(in_oklab,var(--ivory)_82%,transparent))]" />
-              <div className="absolute inset-x-0 top-1/2 h-px bg-border" />
-              <div className="absolute inset-y-0 left-1/2 w-px bg-border" />
+          <Reveal delay={120} className="flex flex-col items-center">
+            <p className="max-w-[30ch] text-center text-[0.78rem] tracking-[0.06em] text-foreground/55 italic">
+              {t(
+                "Turn that same lens on the root below, and three answers come back differently:",
+                "ಅದೇ ದೃಷ್ಟಿಯನ್ನು ಕೆಳಗಿನ ಬೇರಿನ ಮೇಲೆ ಹರಿಸಿದಾಗ, ಮೂರು ಉತ್ತರಗಳು ಬೇರೆ ಬೇರೆಯಾಗಿ ಬರುತ್ತವೆ:",
+              )}
+            </p>
+            <div className="mt-8 w-full max-w-[420px]">
+              <RootsDiagram dark={false} showEyebrow={false} compact />
             </div>
+            <p
+              className={`mt-10 max-w-[34ch] text-center text-[1.05rem] leading-[1.6] text-[color:var(--bark)] ${headFont}`}
+            >
+              {t(
+                "“No individual, organization, or system — including democracy — should be a burden on the government.”",
+                "“ವ್ಯಕ್ತಿ, ಸಂಘ ಸಂಸ್ಥೆ, ವ್ಯವಸ್ಥೆ — ಪ್ರಜಾಪ್ರಭುತ್ವವು ಸೇರಿದಂತೆ — ಯಾವುದೂ ಸರ್ಕಾರಕ್ಕೆ ಹೊರೆಯಾಗಿರಬಾರದು.”",
+              )}
+            </p>
+            <p className="mt-2 text-[0.68rem] tracking-[0.2em] text-foreground/45 uppercase">
+              {t("— from the Kendra's objectives", "— ಕೇಂದ್ರದ ಉದ್ದೇಶಗಳಿಂದ")}
+            </p>
           </Reveal>
         </div>
 

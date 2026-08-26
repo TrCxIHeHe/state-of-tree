@@ -11,16 +11,16 @@ const objectives: { en: string; kn: string }[] = [
     kn: "ಪ್ರತಿಯೊಂದನ್ನು ಸರ್ಕಾರದ ಮೂಗಿನ ನೇರಕ್ಕೆ ನೋಡುವುದು. ಅಂದರೆ, ವ್ಯಕ್ತಿ, ಸಂಘ ಸಂಸ್ಥೆ, ವ್ಯವಸ್ಥೆ (ಪ್ರಜಾಪ್ರಭುತ್ವವು ಸೇರಿದಂತೆ) ಯಾವುದೂ ಸರ್ಕಾರಕ್ಕೆ ಹೊರೆಯಾಗಿರಬಾರದು.",
   },
   {
-    en: "To urge the United Nations to declare one day as “World Government's Day”.",
-    kn: "ವಿಶ್ವಸಂಸ್ಥೆಗೆ ‘ವಿಶ್ವಸರ್ಕಾರ ದಿನ’ ವೊಂದನ್ನು ಘೋಷಿಸುವಂತೆ ಒತ್ತಾಯಿಸುವುದು",
+    en: "To urge the United Nations to declare one day as “World Governance Day”.",
+    kn: "ವಿಶ್ವಸಂಸ್ಥೆಗೆ ‘ವಿಶ್ವ ಆಡಳಿತ ದಿನ’ ವೊಂದನ್ನು ಘೋಷಿಸುವಂತೆ ಒತ್ತಾಯಿಸುವುದು",
   },
   {
     en: "To urge that peace committees be formed in sensitive areas where communal disturbances occur.",
     kn: "ಕೋಮು ಗಲಭೆಗಳಾಗುತ್ತಿರುವ ಸೂಕ್ಷ್ಮ ಪ್ರದೇಶಗಳಲ್ಲಿ ಶಾಂತಿ ಸಮಿತಿ ಯನ್ನು ರಚಿಸುವಂತೆ ಒತ್ತಾಯಿಸುವುದು,",
   },
   {
-    en: "To urge the government to inculcate the text “Government” in text books.",
-    kn: "ಪಠ್ಯಪುಸ್ತಕಗಳಲ್ಲಿ ‘ಸರ್ಕಾರ’ ಎಂಬ ಪಠ್ಯವನ್ನು ಅಳವಡಿಸುವಂತೆ ಸರ್ಕಾರವನ್ನು ಒತ್ತಾಯಿಸುವುದು.",
+    en: "To urge the government to inculcate the text “Governance” in text books, as a lesson.",
+    kn: "ಪಠ್ಯಪುಸ್ತಕಗಳಲ್ಲಿ ‘ಆಡಳಿತ’ ಎಂಬ ಪಠ್ಯವನ್ನು ಒಂದು ಪಾಠವಾಗಿ ಅಳವಡಿಸುವಂತೆ ಸರ್ಕಾರವನ್ನು ಒತ್ತಾಯಿಸುವುದು.",
   },
   {
     en: "To organise public meetings and seminars, and to build awareness about government among students through essay and debate competitions in schools and colleges.",

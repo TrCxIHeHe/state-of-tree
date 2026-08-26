@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { nav, useLanguage } from "@/lib/language";
+import { cn } from "@/lib/utils";
 
-const LOGO_SRC = "/brand/logo.png";
+const LOGO_SRC = "/brand/seal.png";
 
 const links = [
   { href: "#about", label: nav.about },
@@ -18,7 +19,10 @@ function LanguageToggle({ className = "" }: { className?: string }) {
   const { lang, setLang } = useLanguage();
   return (
     <div
-      className={`inline-flex items-center border border-border text-[0.7rem] font-medium tracking-wide ${className}`}
+      className={cn(
+        "inline-flex items-center border border-border text-[0.7rem] font-medium tracking-wide",
+        className,
+      )}
       role="group"
       aria-label="Language"
     >
@@ -83,10 +87,10 @@ export function SiteHeader() {
         >
           <img
             src={LOGO_SRC}
-            alt="Sarkaro Rakshathi Kendra emblem: a whip and a bouquet"
-            className="h-11 w-auto md:h-12"
-            width={503}
-            height={588}
+            alt="Sarkaro Rakshathi Kendra official seal: a tree, half flowering and half bare, rooted between a watchdog's raised hands"
+            className="h-12 w-auto md:h-14"
+            width={700}
+            height={705}
           />
           <span className="leading-tight">
             <span className="kn-display block text-[0.95rem] font-semibold text-primary md:text-base">

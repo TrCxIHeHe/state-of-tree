@@ -17,17 +17,17 @@ const focus = [
     },
   },
   {
-    t: { en: "“World Government's Day”", kn: "‘ವಿಶ್ವ ಸರ್ಕಾರ ದಿನ’" },
+    t: { en: "“World Governance Day”", kn: "‘ವಿಶ್ವ ಆಡಳಿತ ದಿನ’" },
     d: {
-      en: "Urge UNO to declare one day as “World Government's Day”.",
-      kn: "ವಿಶ್ವಸಂಸ್ಥೆಗೆ ‘ವಿಶ್ವಸರ್ಕಾರ ದಿನ’ ವೊಂದನ್ನು ಘೋಷಿಸುವಂತೆ ಒತ್ತಾಯಿಸುವುದು.",
+      en: "Urge UNO to declare one day as “World Governance Day”.",
+      kn: "ವಿಶ್ವಸಂಸ್ಥೆಗೆ ‘ವಿಶ್ವ ಆಡಳಿತ ದಿನ’ ವೊಂದನ್ನು ಘೋಷಿಸುವಂತೆ ಒತ್ತಾಯಿಸುವುದು.",
     },
   },
   {
-    t: { en: "Government as a Lesson", kn: "ಪಠ್ಯದಲ್ಲಿ ‘ಸರ್ಕಾರ’" },
+    t: { en: "Governance as a Lesson", kn: "ಪಠ್ಯದಲ್ಲಿ ‘ಆಡಳಿತ’" },
     d: {
-      en: "Insist the government to inculcate Government as a lesson in text books.",
-      kn: "ಪಠ್ಯಪುಸ್ತಕಗಳಲ್ಲಿ ‘ಸರ್ಕಾರ’ ಎಂಬ ಪಠ್ಯವನ್ನು ಅಳವಡಿಸುವಂತೆ ಸರ್ಕಾರವನ್ನು ಒತ್ತಾಯಿಸುವುದು.",
+      en: "Insist the government to inculcate Governance as a lesson in text books.",
+      kn: "ಪಠ್ಯಪುಸ್ತಕಗಳಲ್ಲಿ ‘ಆಡಳಿತ’ ಎಂಬ ಪಠ್ಯವನ್ನು ಅಳವಡಿಸುವಂತೆ ಸರ್ಕಾರವನ್ನು ಒತ್ತಾಯಿಸುವುದು.",
     },
   },
   {

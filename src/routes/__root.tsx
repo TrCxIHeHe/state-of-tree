@@ -7,10 +7,10 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { IntroSplash } from "../components/site/IntroSplash";
 
 function NotFoundComponent() {
   return (
@@ -37,9 +37,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -122,9 +119,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    document.body.style.overflow = showIntro ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showIntro]);
 
   return (
     <QueryClientProvider client={queryClient}>
+      {showIntro && <IntroSplash onDone={() => setShowIntro(false)} />}
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
