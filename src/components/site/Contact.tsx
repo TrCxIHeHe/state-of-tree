@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type MouseEvent } from "react";
 import { useLanguage } from "@/lib/language";
 import { Reveal } from "./Reveal";
 
@@ -11,7 +11,17 @@ const CONTACT_EMAIL = "kendrasarkarorakshathi@gmail.com";
 // merchant account the QR itself points to.
 const UPI_VPA = "MAB.037348059620015@AXISBANK";
 const UPI_PAYEE_NAME = "Sarkaro Rakshathi Kendra";
-const UPI_INTENT_URL = `upi://pay?pa=${encodeURIComponent(UPI_VPA)}&pn=${encodeURIComponent(UPI_PAYEE_NAME)}&cu=INR&tn=${encodeURIComponent("Donation")}`;
+const UPI_PARAMS = `pa=${encodeURIComponent(UPI_VPA)}&pn=${encodeURIComponent(UPI_PAYEE_NAME)}&cu=INR&tn=${encodeURIComponent("Donation")}`;
+// Generic UPI intent — the one that shows a full app chooser, but only
+// Android's browser actually resolves it that way.
+const UPI_GENERIC_URL = `upi://pay?${UPI_PARAMS}`;
+// iOS has no such chooser: each app only answers to its own custom scheme,
+// so we offer them individually there.
+const IOS_UPI_LINKS = [
+  { name: "Google Pay", url: `gpay://upi/pay?${UPI_PARAMS}` },
+  { name: "PhonePe", url: `phonepe://pay?${UPI_PARAMS}` },
+  { name: "Paytm", url: `paytmmp://pay?${UPI_PARAMS}` },
+] as const;
 
 function isMobileDevice() {
   if (typeof navigator === "undefined") return false;
@@ -21,36 +31,71 @@ function isMobileDevice() {
   );
 }
 
-/** Tapping this on a phone opens the UPI app chooser (GPay, PhonePe, Paytm,
- * any installed app) directly for this merchant — no extra confirmation
- * step. On a laptop/desktop it's just the scannable QR, unchanged. */
+function isIOSDevice() {
+  if (typeof navigator === "undefined") return false;
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+/** Navigates via a real, user-clicked anchor rather than assigning
+ * location.href — some Android browsers/WebViews only honour a custom
+ * URL scheme (upi://, gpay://, …) when it comes from an actual link click. */
+function openAppLink(url: string) {
+  const a = document.createElement("a");
+  a.href = url;
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+/** On a phone: clicking opens the UPI app chooser (Android) or a short list
+ * of app-specific links (iOS, which has no generic chooser) — no extra
+ * confirmation step. On a laptop/desktop it's just the scannable QR. */
 function PaymentQr() {
   const { t } = useLanguage();
+  const [showIosChoices, setShowIosChoices] = useState(false);
 
-  function handleActivate() {
-    if (isMobileDevice()) {
-      window.location.href = UPI_INTENT_URL;
+  function handleActivate(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    if (!isMobileDevice()) return;
+    if (isIOSDevice()) {
+      setShowIosChoices(true);
+      return;
     }
+    openAppLink(UPI_GENERIC_URL);
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleActivate}
-      className="cursor-pointer border-0 bg-transparent p-0 text-left"
-      aria-label={t(
-        "Tap to pay with any UPI app",
-        "ಯಾವುದೇ UPI ಆ್ಯಪ್‌ನೊಂದಿಗೆ ಪಾವತಿಸಲು ಒತ್ತಿ",
+    <div>
+      <button
+        type="button"
+        onClick={handleActivate}
+        className="cursor-pointer border-0 bg-transparent p-0 text-left"
+        aria-label={t("Click to pay with any UPI app", "ಯಾವುದೇ UPI ಆ್ಯಪ್‌ನೊಂದಿಗೆ ಪಾವತಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ")}
+      >
+        <img
+          src={QR_SRC}
+          alt="Scan or click to contribute — donation QR code for Sarkaro Rakshathi Kendra"
+          className="h-40 w-40 border border-[color:var(--ivory)]/25 bg-[color:var(--ivory)] p-2 md:h-48 md:w-48"
+          width={480}
+          height={480}
+        />
+      </button>
+
+      {showIosChoices && (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {IOS_UPI_LINKS.map((app) => (
+            <a
+              key={app.name}
+              href={app.url}
+              className="border border-[color:var(--ivory)]/30 bg-[color:var(--ivory)]/10 px-3 py-2 text-[0.78rem] font-medium tracking-wide text-[color:var(--ivory)] transition-colors hover:bg-[color:var(--ivory)]/20"
+            >
+              {app.name}
+            </a>
+          ))}
+        </div>
       )}
-    >
-      <img
-        src={QR_SRC}
-        alt="Scan or tap to contribute — donation QR code for Sarkaro Rakshathi Kendra"
-        className="h-40 w-40 border border-[color:var(--ivory)]/25 bg-[color:var(--ivory)] p-2 md:h-48 md:w-48"
-        width={480}
-        height={480}
-      />
-    </button>
+    </div>
   );
 }
 
@@ -217,11 +262,18 @@ export function Contact() {
               <p className="text-[0.72rem] tracking-[0.24em] text-[color:var(--ivory)]/60 uppercase">
                 {t("Contribute generously", "ಉದಾರವಾಗಿ ಕೊಡುಗೆ ನೀಡಿ")}
               </p>
-              <p className={`mt-2 max-w-[36ch] text-[0.95rem] leading-[1.8] text-[color:var(--ivory)]/75 ${bodyFont}`}>
+              <p
+                className={`mt-2 hidden max-w-[36ch] text-[0.95rem] leading-[1.8] text-[color:var(--ivory)]/75 md:block ${bodyFont}`}
+              >
                 {t(
-                  "Scan the QR to contribute — on a phone, just tap it to open your UPI app directly.",
-                  "ಕೊಡುಗೆ ನೀಡಲು QR ಸ್ಕ್ಯಾನ್ ಮಾಡಿ — ಫೋನಿನಲ್ಲಿ, ನಿಮ್ಮ UPI ಆ್ಯಪ್ ನೇರವಾಗಿ ತೆರೆಯಲು ಅದನ್ನು ಒತ್ತಿ.",
+                  "Scan the QR with any UPI app to contribute.",
+                  "ಕೊಡುಗೆ ನೀಡಲು ಯಾವುದೇ UPI ಆ್ಯಪ್‌ನಿಂದ QR ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.",
                 )}
+              </p>
+              <p
+                className={`mt-2 max-w-[36ch] text-[0.95rem] leading-[1.8] text-[color:var(--ivory)]/75 md:hidden ${bodyFont}`}
+              >
+                {t("Click the QR to pay.", "ಪಾವತಿಸಲು QR ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ.")}
               </p>
             </div>
             <PaymentQr />
