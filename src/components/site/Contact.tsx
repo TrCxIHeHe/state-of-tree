@@ -6,24 +6,70 @@ const LOGO_SRC = "/brand/seal.png";
 const QR_SRC = "/brand/donation-qr.png";
 const CONTACT_EMAIL = "kendrasarkarorakshathi@gmail.com";
 
-function DonationForm() {
+// The exact merchant VPA encoded in the printed donation QR (decoded from its
+// EMV payload), so the "tap to pay" intent below opens the very same
+// merchant account the QR itself points to.
+const UPI_VPA = "MAB.037348059620015@AXISBANK";
+const UPI_PAYEE_NAME = "Sarkaro Rakshathi Kendra";
+const UPI_INTENT_URL = `upi://pay?pa=${encodeURIComponent(UPI_VPA)}&pn=${encodeURIComponent(UPI_PAYEE_NAME)}&cu=INR&tn=${encodeURIComponent("Donation")}`;
+
+function isMobileDevice() {
+  if (typeof navigator === "undefined") return false;
+  return (
+    /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) ||
+    ("ontouchstart" in window && window.innerWidth < 768)
+  );
+}
+
+/** Tapping this on a phone opens the UPI app chooser (GPay, PhonePe, Paytm,
+ * any installed app) directly for this merchant — no extra confirmation
+ * step. On a laptop/desktop it's just the scannable QR, unchanged. */
+function PaymentQr() {
+  const { t } = useLanguage();
+
+  function handleActivate() {
+    if (isMobileDevice()) {
+      window.location.href = UPI_INTENT_URL;
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleActivate}
+      className="cursor-pointer border-0 bg-transparent p-0 text-left"
+      aria-label={t(
+        "Tap to pay with any UPI app",
+        "ಯಾವುದೇ UPI ಆ್ಯಪ್‌ನೊಂದಿಗೆ ಪಾವತಿಸಲು ಒತ್ತಿ",
+      )}
+    >
+      <img
+        src={QR_SRC}
+        alt="Scan or tap to contribute — donation QR code for Sarkaro Rakshathi Kendra"
+        className="h-40 w-40 border border-[color:var(--ivory)]/25 bg-[color:var(--ivory)] p-2 md:h-48 md:w-48"
+        width={480}
+        height={480}
+      />
+    </button>
+  );
+}
+
+function PaymentMessageForm() {
   const { t, lang } = useLanguage();
   const bodyFont = lang === "kn" ? "kn" : "";
-  const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
-  const [message, setMessage] = useState("");
+  const [amount, setAmount] = useState("");
+  const [transactionId, setTransactionId] = useState("");
 
   const fieldClass =
     "w-full border-b border-[color:var(--ivory)]/25 bg-transparent px-0.5 py-2.5 text-[0.95rem] text-[color:var(--ivory)] placeholder:text-[color:var(--ivory)]/40 focus:border-[color:var(--ivory)]/70 focus:outline-none transition-colors";
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const subject = t("Contribution enquiry", "ಕೊಡುಗೆ ವಿಚಾರಣೆ");
+    const subject = t("Payment confirmation", "ಪಾವತಿ ದೃಢೀಕರಣ");
     const bodyLines = [
-      `${t("Name", "ಹೆಸರು")}: ${name}`,
-      `${t("Contact", "ಸಂಪರ್ಕ")}: ${contact}`,
-      message ? `${t("Message", "ಸಂದೇಶ")}: ${message}` : "",
-    ].filter(Boolean);
+      `${t("Amount paid", "ಪಾವತಿಸಿದ ಮೊತ್ತ")}: ₹${amount}`,
+      `${t("Transaction ID", "ವಹಿವಾಟು ಐಡಿ")}: ${transactionId}`,
+    ];
     const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
     window.location.href = mailto;
   }
@@ -31,57 +77,48 @@ function DonationForm() {
   return (
     <form onSubmit={handleSubmit} className="grid gap-5">
       <div>
-        <label htmlFor="donor-name" className="text-[0.7rem] tracking-[0.2em] text-[color:var(--ivory)]/55 uppercase">
-          {t("Name", "ಹೆಸರು")}
+        <label
+          htmlFor="paid-amount"
+          className="text-[0.7rem] tracking-[0.2em] text-[color:var(--ivory)]/55 uppercase"
+        >
+          {t("Amount you paid", "ನೀವು ಪಾವತಿಸಿದ ಮೊತ್ತ")}
         </label>
         <input
-          id="donor-name"
+          id="paid-amount"
           required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          inputMode="decimal"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value.replace(/[^0-9.]/g, ""))}
           className={fieldClass}
-          placeholder={t("Your name", "ನಿಮ್ಮ ಹೆಸರು")}
+          placeholder={t("e.g. 500", "ಉದಾ. 500")}
         />
       </div>
       <div>
-        <label htmlFor="donor-contact" className="text-[0.7rem] tracking-[0.2em] text-[color:var(--ivory)]/55 uppercase">
-          {t("Contact", "ಸಂಪರ್ಕ")}
+        <label
+          htmlFor="paid-txn"
+          className="text-[0.7rem] tracking-[0.2em] text-[color:var(--ivory)]/55 uppercase"
+        >
+          {t("Transaction number / ID", "ವಹಿವಾಟು ಸಂಖ್ಯೆ / ಐಡಿ")}
         </label>
         <input
-          id="donor-contact"
+          id="paid-txn"
           required
-          value={contact}
-          onChange={(e) => setContact(e.target.value)}
-          className={fieldClass}
-          placeholder={t("Phone or e-mail", "ಫೋನ್ ಅಥವಾ ಇಮೇಲ್")}
-        />
-      </div>
-      <div>
-        <label htmlFor="donor-message" className="text-[0.7rem] tracking-[0.2em] text-[color:var(--ivory)]/55 uppercase">
-          {t("Message", "ಸಂದೇಶ")}{" "}
-          <span className="normal-case text-[color:var(--ivory)]/40">
-            ({t("optional", "ಐಚ್ಛಿಕ")})
-          </span>
-        </label>
-        <textarea
-          id="donor-message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          rows={3}
-          className={`${fieldClass} resize-none`}
-          placeholder={t("Anything you'd like us to know", "ನೀವು ತಿಳಿಸಲು ಬಯಸುವುದೇನಾದರೂ")}
+          value={transactionId}
+          onChange={(e) => setTransactionId(e.target.value)}
+          className={`${fieldClass} font-mono`}
+          placeholder={t("UPI ref. / UTR number", "UPI ಉಲ್ಲೇಖ / UTR ಸಂಖ್ಯೆ")}
         />
       </div>
       <button
         type="submit"
         className={`mt-1 inline-flex w-fit items-center justify-center border border-[color:var(--ivory)]/40 bg-[color:var(--ivory)]/10 px-6 py-3 text-[0.82rem] font-medium tracking-wide text-[color:var(--ivory)] transition-colors hover:bg-[color:var(--ivory)]/20 ${bodyFont}`}
       >
-        {t("Send details", "ವಿವರಗಳನ್ನು ಕಳುಹಿಸಿ")}
+        {t("Send", "ಕಳುಹಿಸಿ")}
       </button>
       <p className={`text-[0.78rem] leading-relaxed text-[color:var(--ivory)]/55 ${bodyFont}`}>
         {t(
-          `This opens your mail app addressed to ${CONTACT_EMAIL}, prefilled with your details.`,
-          `ಇದು ನಿಮ್ಮ ಮೇಲ್ ಆ್ಯಪ್ ಅನ್ನು ${CONTACT_EMAIL} ಗೆ ವಿಳಾಸ ಸಹಿತ, ನಿಮ್ಮ ವಿವರಗಳೊಂದಿಗೆ ತೆರೆಯುತ್ತದೆ.`,
+          `This opens your mail app addressed to ${CONTACT_EMAIL}, prefilled with your payment details.`,
+          `ಇದು ನಿಮ್ಮ ಮೇಲ್ ಆ್ಯಪ್ ಅನ್ನು ${CONTACT_EMAIL} ಗೆ ವಿಳಾಸ ಸಹಿತ, ನಿಮ್ಮ ಪಾವತಿ ವಿವರಗಳೊಂದಿಗೆ ತೆರೆಯುತ್ತದೆ.`,
         )}
       </p>
     </form>
@@ -182,26 +219,20 @@ export function Contact() {
               </p>
               <p className={`mt-2 max-w-[36ch] text-[0.95rem] leading-[1.8] text-[color:var(--ivory)]/75 ${bodyFont}`}>
                 {t(
-                  "Scan the QR code to contribute directly for this cause.",
-                  "ಈ ಉದ್ದೇಶಕ್ಕಾಗಿ ನೇರವಾಗಿ ಕೊಡುಗೆ ನೀಡಲು ಕ್ಯೂಆರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.",
+                  "Scan the QR to contribute — on a phone, just tap it to open your UPI app directly.",
+                  "ಕೊಡುಗೆ ನೀಡಲು QR ಸ್ಕ್ಯಾನ್ ಮಾಡಿ — ಫೋನಿನಲ್ಲಿ, ನಿಮ್ಮ UPI ಆ್ಯಪ್ ನೇರವಾಗಿ ತೆರೆಯಲು ಅದನ್ನು ಒತ್ತಿ.",
                 )}
               </p>
             </div>
-            <img
-              src={QR_SRC}
-              alt="Scan to contribute — donation QR code for Sarkaro Rakshathi Kendra"
-              className="h-40 w-40 border border-[color:var(--ivory)]/25 bg-[color:var(--ivory)] p-2 md:h-48 md:w-48"
-              width={480}
-              height={480}
-            />
+            <PaymentQr />
           </Reveal>
 
           <Reveal delay={100}>
             <p className="text-[0.72rem] tracking-[0.24em] text-[color:var(--ivory)]/60 uppercase">
-              {t("Or leave your details", "ಅಥವಾ ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಬಿಡಿ")}
+              {t("Already paid? Let us know", "ಈಗಾಗಲೇ ಪಾವತಿಸಿದ್ದೀರಾ? ನಮಗೆ ತಿಳಿಸಿ")}
             </p>
             <div className="mt-4 max-w-[440px]">
-              <DonationForm />
+              <PaymentMessageForm />
             </div>
           </Reveal>
         </div>
