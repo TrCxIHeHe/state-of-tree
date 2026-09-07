@@ -42,7 +42,7 @@ export function Hero() {
               </span>
             </h1>
             <p className={`mt-3 text-lg text-accent italic md:text-xl ${headFont}`}>
-              {t("A Watchdog of Government", "ಸರ್ಕಾರದ ಒಂದು ಕಾವಲುಗಾರ")}
+              {t("Governance Lens", "ಆಡಳಿತಾತ್ಮಕ ದೃಷ್ಟಿಕೋನ")}
             </p>
           </div>
 

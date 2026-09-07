@@ -68,7 +68,7 @@ function Bug({ inView, delay = 0 }: { inView: boolean; delay?: number }) {
   return (
     <svg
       viewBox="-20 -14 40 28"
-      className="h-6 w-9 shrink-0 overflow-visible sm:h-7 sm:w-10 md:h-8 md:w-11"
+      className="h-10 w-14 shrink-0 overflow-visible sm:h-12 sm:w-16 md:h-14 md:w-20"
       style={{ opacity: inView ? 1 : 0, transition: "opacity 60ms linear" }}
       aria-hidden
     >

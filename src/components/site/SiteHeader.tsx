@@ -87,10 +87,10 @@ export function SiteHeader() {
         >
           <img
             src={LOGO_SRC}
-            alt="Sarkaro Rakshathi Kendra official seal: a tree, half flowering and half bare, rooted between a watchdog's raised hands"
+            alt="Sarkaro Rakshathi Kendra official seal: a watchdog examining governance through the Governance Lens"
             className="h-12 w-auto md:h-14"
             width={700}
-            height={705}
+            height={692}
           />
           <span className="leading-tight">
             <span className="kn-display block text-[0.95rem] font-semibold text-primary md:text-base">

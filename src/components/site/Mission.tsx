@@ -6,8 +6,8 @@ const steps = [
     n: "01",
     t: { en: "Administration", kn: "ಆಡಳಿತ" },
     d: {
-      en: "“Somehow, some administration” — the state the source material rejects.",
-      kn: "‘ಹೇಗೋ ಒಂದು ಆಡಳಿತ’ — ಈ ಮೂಲ ಸ್ಥಿತಿಯನ್ನು ಕೇಂದ್ರ ತಿರಸ್ಕರಿಸುತ್ತದೆ.",
+      en: "To move from some how administration to full fledged administration.",
+      kn: "‘ಹೇಗೋ ಒಂದು ಆಡಳಿತ’ದಿಂದ ಸ್ವಯಂಪೂರ್ಣ ಆಡಳಿತದೆಡೆಗೆ ಸಾಗುವುದು.",
     },
   },
   {
@@ -68,7 +68,7 @@ export function Mission() {
           <Reveal delay={120}>
             <p className={`text-[1rem] leading-[1.9] text-foreground/80 ${bodyFont}`}>
               {t(
-                "This is the concept of the Kendra: to move from somehow-administration to full fledged administration. It means to see everything from the government's point of view — whether it is an individual, an organization or a system (the democracy system which we adopted).",
+                "This is the concept of the Kendra: to move from some how administration to full fledged administration. It means to see everything from the government's point of view — whether it is an individual, an organization or a system (the democracy system which we adopted).",
                 "ಇದೇ ಕೇಂದ್ರದ ಪರಿಕಲ್ಪನೆ: ‘ಹೇಗೋ ಒಂದು ಆಡಳಿತ’ದಿಂದ ಸ್ವಯಂಪೂರ್ಣ ಆಡಳಿತದೆಡೆಗೆ ಸಾಗುವುದು. ಎಲ್ಲವನ್ನೂ ಸರ್ಕಾರದ ದೃಷ್ಟಿಕೋನದಿಂದ ನೋಡುವುದು ಎಂದರ್ಥ — ಅದು ವ್ಯಕ್ತಿ, ಸಂಘ ಸಂಸ್ಥೆ ಅಥವಾ ವ್ಯವಸ್ಥೆ (ನಾವು ಅಳವಡಿಸಿಕೊಂಡ ಪ್ರಜಾಪ್ರಭುತ್ವ ವ್ಯವಸ್ಥೆ ಸೇರಿದಂತೆ) ಆಗಿರಲಿ.",
               )}
             </p>

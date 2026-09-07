@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 
 const objectives: { en: string; kn: string }[] = [
   {
-    en: "To move from the government's ‘somehow, some administration’ towards ‘self-sufficient administration’.",
+    en: "To move from the government's ‘some how administration’ towards ‘full fledged administration’.",
     kn: "ಸರ್ಕಾರದ ‘ಹೇಗೋ ಒಂದು ಆಡಳಿತ’ ಎಂಬುದರಿಂದ ‘ಸ್ವಯಂಪೂರ್ಣ ಆಡಳಿತ’ ಎಂಬೆಡೆಗೆ ನಡೆಯುವುದು",
   },
   {

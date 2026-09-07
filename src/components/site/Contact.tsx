@@ -297,7 +297,7 @@ export function Contact() {
             alt=""
             className="h-12 w-auto opacity-95"
             width={700}
-            height={705}
+            height={692}
           />
           <p className="text-[0.8rem] text-[color:var(--ivory)]/70">
             Sarkaro Rakshathi Kendra (R.) · ಸರ್ಕಾರೋ ರಕ್ಷತಿ ಕೇಂದ್ರ (ರಿ.) ·{" "}

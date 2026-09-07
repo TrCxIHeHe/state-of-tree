@@ -29,7 +29,7 @@ export function Roots() {
               "Where the root is fed, the branches flower.",
               "ಬೇರಿಗೆ ಆಹಾರ ಸಿಕ್ಕರೆ, ಕೊಂಬೆಗಳು ಅರಳುತ್ತವೆ.",
             )}
-            <span className="block text-[color:var(--bark)]">
+            <span className="block text-[color:var(--ivory)]">
               {t("Where it is eaten, they wither.", "ಅದನ್ನು ತಿಂದರೆ, ಅವು ಬಾಡುತ್ತವೆ.")}
             </span>
           </h2>

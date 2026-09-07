@@ -55,9 +55,8 @@ export function IntroSplash({ onDone }: { onDone: () => void }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden transition-opacity duration-500 ${
-        exiting ? "pointer-events-none opacity-0" : "opacity-100"
-      }`}
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden transition-opacity duration-500 ${exiting ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
       style={{
         background:
           "radial-gradient(circle at 50% 58%, color-mix(in oklab, var(--living-deep) 18%, var(--soil-deep)), var(--soil-deep) 72%), linear-gradient(180deg, var(--royal) 0%, var(--soil-deep) 88%)",
@@ -80,7 +79,7 @@ export function IntroSplash({ onDone }: { onDone: () => void }) {
           alt=""
           className="relative h-full w-full drop-shadow-[0_0_40px_rgba(120,180,140,0.4)]"
           width={700}
-          height={705}
+          height={692}
         />
       </div>
 
@@ -95,7 +94,7 @@ export function IntroSplash({ onDone }: { onDone: () => void }) {
           className="animate-intro-rise mt-2.5 text-[0.62rem] tracking-[0.42em] text-[color:var(--ivory)]/65 uppercase sm:text-[0.7rem]"
           style={{ animationDelay: "1250ms" }}
         >
-          A Watchdog of Government
+          Governance Lens
         </p>
         <div
           className="animate-intro-rule mx-auto mt-4 h-px w-0"

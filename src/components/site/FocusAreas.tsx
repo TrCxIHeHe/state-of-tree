@@ -33,8 +33,8 @@ const focus = [
   {
     t: { en: "Awareness Amongst Students", kn: "ವಿದ್ಯಾರ್ಥಿಗಳಲ್ಲಿ ಜಾಗೃತಿ" },
     d: {
-      en: "Debates, essay competitions and other activities on the subject of “Governance”.",
-      kn: "‘ಆಡಳಿತ’ ವಿಷಯದ ಬಗ್ಗೆ ಚರ್ಚಾಸ್ಪರ್ಧೆ, ಪ್ರಬಂಧ ಸ್ಪರ್ಧೆ ಮತ್ತು ಇತರ ಚಟುವಟಿಕೆಗಳು.",
+      en: "To bring awareness amongst students by conducting debates, essay competition and other activities on the subject of ‘Governance’",
+      kn: "‘ಆಡಳಿತ’ (Governance) ವಿಷಯದ ಕುರಿತು ಚರ್ಚಾಸ್ಪರ್ಧೆಗಳು, ಪ್ರಬಂಧ ಸ್ಪರ್ಧೆಗಳು ಮತ್ತು ಇತರ ಚಟುವಟಿಕೆಗಳನ್ನು ನಡೆಸುವ ಮೂಲಕ ವಿದ್ಯಾರ್ಥಿಗಳಲ್ಲಿ ಜಾಗೃತಿ ಮೂಡಿಸುವುದು.",
     },
   },
   {
