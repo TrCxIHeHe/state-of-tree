@@ -23,8 +23,8 @@ const objectives: { en: string; kn: string }[] = [
     kn: "ಪಠ್ಯಪುಸ್ತಕಗಳಲ್ಲಿ ‘ಆಡಳಿತ’ ಎಂಬ ಪಠ್ಯವನ್ನು ಒಂದು ಪಾಠವಾಗಿ ಅಳವಡಿಸುವಂತೆ ಸರ್ಕಾರವನ್ನು ಒತ್ತಾಯಿಸುವುದು.",
   },
   {
-    en: "To organise public meetings and seminars, and to build awareness about government among students through essay and debate competitions in schools and colleges.",
-    kn: "ಸಾರ್ವಜನಿಕ ಸಭೆ, ವಿಚಾರ ಸಂಕೀರ್ಣಗಳನ್ನು ಏರ್ಪಡಿಸುವುದು. ಶಾಲಾ ಕಾಲೇಜುಗಳಲ್ಲಿ ಪ್ರಬಂಧ ಸ್ಪರ್ಧೆ, ಚರ್ಚಾಸ್ಪರ್ಧೆಗಳನ್ನು ಏರ್ಪಡಿಸುವುದರ ಮೂಲಕ ವಿದ್ಯಾರ್ಥಿಗಳಲ್ಲಿ ಸರ್ಕಾರದ ಬಗ್ಗೆ ಜಾಗೃತಿಯನ್ನುಂಟು ಮಾಡುವುದು.",
+    en: "To organise public meetings and seminars, and to bring awareness amongst students by conducting debates, essay competition and other activities on the subject of ‘Governance’",
+    kn: "ಆಡಳಿತ (Governance) ವಿಷಯದ ಕುರಿತು ಸಾರ್ವಜನಿಕ ಸಭೆಗಳು ಮತ್ತು ವಿಚಾರಸಂಕಿರಣಗಳನ್ನು ಆಯೋಜಿಸುವುದು, ಹಾಗೂ ಚರ್ಚಾಸ್ಪರ್ಧೆಗಳು, ಪ್ರಬಂಧ ಸ್ಪರ್ಧೆಗಳು ಮತ್ತು ಇತರ ಚಟುವಟಿಕೆಗಳನ್ನು ನಡೆಸುವ ಮೂಲಕ ವಿದ್ಯಾರ್ಥಿಗಳಲ್ಲಿ ಜಾಗೃತಿ ಮೂಡಿಸುವುದು.",
   },
   {
     en: "To urge the government to regulate TV media that acts irresponsibly.",
